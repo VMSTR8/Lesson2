@@ -8,12 +8,12 @@ students = [
     {'first_name': 'Петя'},
 ]
 
-new_dict = []
+new_list = []
 for i in students:
-    new_dict.append(i['first_name'])
+    new_list.append(i['first_name'])
 # print(new_dict)
-for i2 in set(new_dict):
-    print(f'{i2}: {new_dict.count(i2)}')
+for i2 in set(new_list):
+    print(f'{i2}: {new_list.count(i2)}')
 
 # Пример вывода:
 # Вася: 1
@@ -31,11 +31,11 @@ students = [
     {'first_name': 'Оля'},
 ]
 
-new_dict2 = []
+new_list_2 = []
 count = 0
 for i in students:
-    new_dict2.append(i['first_name'])
-res = max(new_dict2, key=new_dict2.count)
+    new_list_2.append(i['first_name'])
+res = max(new_list_2, key=new_list_2.count)
 print(f'Самое частое имя среди учеников: {res}')
 
 # Пример вывода:
@@ -101,6 +101,7 @@ for o in school:
 school = [
     {'class': '2a', 'students': [{'first_name': 'Маша'}, {'first_name': 'Оля'}]},
     {'class': '3c', 'students': [{'first_name': 'Олег'}, {'first_name': 'Миша'}]},
+    {'class': '4c', 'students': [{'first_name': 'Олег'}, {'first_name': 'Миша'}, {'first_name': 'Олег'}]}
 ]
 is_male = {
     'Маша': False,
@@ -110,15 +111,23 @@ is_male = {
 }
 
 a = []
+max_boys = {}
+max_girls = {}
 for o in school:
-    a = [i2['first_name'] for i2 in o['students']]
+    a = [i2['first_name'] for i2 in o['students']]  # создаем списки имен для последующей проверки пола
     count_boys = 0
     count_girls = 0
-    for q in a:
+    for q in a:  # этот цикд записывает в каунтеры выше кол-во мальчиков и девочек
         if is_male[q] == bool(True):
             count_boys += 1
         else:
             count_girls += 1
+    max_boys[o['class']] = count_boys  # создаем словарь, в котором будет ключ = класс, а значение кол-во мальчиков
+    max_girls[o['class']] = count_girls  # создаем словарь, в котором будет ключ = класс, а значение кол-во девочек
+
+# Проверяем вышеобъявленные словари по значениям ключей. Где больше мальчиков и девочек, то результат и выдаст
+print(f"Больше всего мальчиков в классе {max(max_boys, key=max_boys.get)}")
+print(f"Больше всего девочек в классе {max(max_girls, key=max_girls.get)}")
 
 # Пример вывода:
 # Больше всего мальчиков в классе 3c
