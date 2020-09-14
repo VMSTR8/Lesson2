@@ -117,7 +117,7 @@ for o in school:
     a = [i2['first_name'] for i2 in o['students']]  # создаем списки имен для последующей проверки пола
     count_boys = 0
     count_girls = 0
-    for q in a:  # этот цикд записывает в каунтеры выше кол-во мальчиков и девочек
+    for q in a:  # этот цикл записывает в каунтеры выше кол-во мальчиков и девочек
         if is_male[q] == bool(True):
             count_boys += 1
         else:
